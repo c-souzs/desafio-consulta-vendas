@@ -1,7 +1,6 @@
 package com.devsuperior.dsmeta.controllers;
 
 import com.devsuperior.dsmeta.dto.SellerMinDTO;
-import com.devsuperior.dsmeta.services.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,9 +18,6 @@ public class SaleController {
 
 	@Autowired
 	private SaleService service;
-
-	@Autowired
-	private SellerService sellerService;
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<SaleMinDTO> findById(@PathVariable Long id) {
@@ -45,7 +41,7 @@ public class SaleController {
 			@RequestParam(defaultValue = "") String minDate,
 			@RequestParam(defaultValue = "") String maxDate
 	) {
-		List<SellerMinDTO> result = sellerService.searchSummary(minDate, maxDate);
+		List<SellerMinDTO> result = service.searchSummary(minDate, maxDate);
 
 		return ResponseEntity.ok(result);
 	}
